@@ -19,23 +19,23 @@
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.5; }
 
     /* Topbar */
-    .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); }
+    .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; }
     .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; cursor: pointer; }
     .tagline { font-size: 0.82rem; font-weight: 500; opacity: 0.9; }
 
     /* Container Principal */
-    .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
+    .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; min-height: 70vh; }
     .section-header { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; margin-bottom: 1.25rem; }
 
-    /* Card de Notícia */
+    /* Cards no Feed */
     .news-feed { display: flex; flex-direction: column; gap: 1.75rem; }
     .news-card { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04); overflow: hidden; }
     
     /* Imagem e Legenda */
     .news-figure { width: 100%; margin: 0; background: #e2e8f0; }
     .news-image { width: 100%; max-height: 420px; object-fit: cover; display: block; }
-    .image-caption { font-size: 0.78rem; color: var(--text-muted); padding: 0.4rem 1.5rem; background: #f8fafc; border-bottom: 1px solid var(--border); }
+    .image-caption { font-size: 0.78rem; color: var(--text-muted); padding: 0.4rem 1.25rem; background: #f8fafc; border-bottom: 1px solid var(--border); }
     .image-caption strong { color: #475569; }
 
     .news-content { padding: 1.5rem; }
@@ -43,17 +43,25 @@
     .meta-time { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
 
     /* Títulos */
-    .news-card h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 800; color: #0b1320; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
+    .news-card h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 800; color: #0b1320; margin-bottom: 0.75rem; letter-spacing: -0.3px; cursor: pointer; }
+    .news-card h2:hover { color: var(--primary); }
     .tripla-title { font-size: 0.95rem; font-weight: 700; color: #374151; background: #fff5f5; border-left: 3px solid var(--primary); padding: 0.5rem 0.75rem; margin-bottom: 1.25rem; line-height: 1.4; }
 
     /* Texto */
-    .news-body p { font-size: 1.02rem; color: #374151; line-height: 1.65; margin-bottom: 0.9rem; }
-    .news-body p:last-child { margin-bottom: 0; }
+    .news-body p { font-size: 1.05rem; color: #374151; line-height: 1.7; margin-bottom: 1rem; }
+    .news-preview { font-size: 1.02rem; color: #4b5563; line-height: 1.6; margin-bottom: 1.25rem; }
+
+    /* Botões */
+    .read-more-btn { display: inline-block; background-color: var(--primary); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.88rem; transition: background 0.2s; border: none; cursor: pointer; }
+    .read-more-btn:hover { background-color: var(--primary-dark); }
+
+    .back-btn { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--primary); font-weight: 700; text-decoration: none; margin-bottom: 1.25rem; cursor: pointer; font-size: 0.95rem; }
+    .back-btn:hover { text-decoration: underline; }
 
     /* Resumo Curto */
-    .short-box { background: #f9fafb; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 1rem; margin-top: 1.25rem; }
-    .short-box h4 { font-size: 0.82rem; text-transform: uppercase; color: #475569; margin-bottom: 0.4rem; }
-    .short-box p { font-size: 0.92rem; color: #4b5563; line-height: 1.5; font-style: italic; }
+    .short-box { background: #f9fafb; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 1.25rem; margin-top: 1.75rem; }
+    .short-box h4 { font-size: 0.85rem; text-transform: uppercase; color: #475569; margin-bottom: 0.5rem; }
+    .short-box p { font-size: 0.95rem; color: #334155; line-height: 1.55; font-style: italic; }
 
     footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 3rem; }
   </style>
@@ -62,14 +70,21 @@
 
   <header class="topbar">
     <div class="topbar-container">
-      <a href="#" class="logo">Voz do Trabalhador</a>
+      <a onclick="irParaHome()" class="logo">Voz do Trabalhador</a>
       <span class="tagline">Trabalho, Economia & Fatos</span>
     </div>
   </header>
 
   <main class="container">
-    <h3 class="section-header">Últimas Notícias</h3>
-    <div id="feed" class="news-feed"></div>
+    <div id="view-feed">
+      <h3 class="section-header">Últimas Notícias</h3>
+      <div id="feed" class="news-feed"></div>
+    </div>
+
+    <div id="view-single" style="display: none;">
+      <a onclick="irParaHome()" class="back-btn">← Voltar para a página inicial</a>
+      <article id="single-article" class="news-card"></article>
+    </div>
   </main>
 
   <footer>
@@ -79,13 +94,15 @@
   <script>
     const noticias = [
       {
+        id: "escala-6x1-lula-flavio",
         categoria: "TRABALHO & POLÍTICA",
         data: "06/10/2026 às 19h55",
         imagemUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
         imagemLegenda: "Debate sobre alterações na jornada de trabalho e impactos no setor produtivo.",
         imagemFonte: "Unsplash / Domínio Público",
-        tituloPrincipal: "Escala 6x1 vira cabo de guerra: Lula pressiona por 40 horas e oposição alerta para risco de cortes",
+        tituloPrincipal: "Escala 6x1 vira cabo de guerra: Lula defende 40 horas e oposição alerta para risco de cortes e inflação",
         triplaSemantica: "ILUSÃO POPULISTA, COMÉRCIO SUFOCADO, TRABALHADOR PREJUDICADO: O QUE NÃO CONTAM SOBRE A JORNADA REDUZIDA",
+        resumoHome: "Proposta de reduzir a carga para 40 horas sem redução salarial ganha tração política, mas especialistas alertam para impacto direto na cesta básica e aumento da informalidade.",
         paragrafos: [
           "Reduzir a carga horária mantendo salários por decreto eleva imediatamente o custo operacional por hora trabalhada. Quem arca com essa diferença é o pequeno comerciante e o prestador de serviços, que acabam repassando o prejuízo diretamente aos preços das mercadorias e alimentos, gerando inflação que anula qualquer ganho salarial.",
           "Sem ganho prévio de produtividade, pequenos negócios não conseguem absorver o aumento repentino de custos. O resultado prático costuma ser o corte de postos com carteira assinada (CLT) e a migração forçada para a informalidade ou contratações precárias.",
@@ -98,14 +115,45 @@
       }
     ];
 
-    const feed = document.getElementById("feed");
-    noticias.slice().reverse().forEach(item => {
-      const card = document.createElement("article");
-      card.className = "news-card";
+    function renderFeed() {
+      const feed = document.getElementById("feed");
+      feed.innerHTML = "";
+      noticias.slice().reverse().forEach(item => {
+        const card = document.createElement("article");
+        card.className = "news-card";
+
+        card.innerHTML = `
+          <figure class="news-figure">
+            <img class="news-image" src="${item.imagemUrl}" alt="${item.tituloPrincipal}">
+            <figcaption class="image-caption">
+              ${item.imagemLegenda} <strong>(Foto: ${item.imagemFonte})</strong>
+            </figcaption>
+          </figure>
+          <div class="news-content">
+            <span class="category-tag">${item.categoria}</span>
+            <div class="meta-time">${item.data}</div>
+            <h2 onclick="abrirArtigo('${item.id}')">${item.tituloPrincipal}</h2>
+            <div class="tripla-title">${item.triplaSemantica}</div>
+            <p class="news-preview">${item.resumoHome}</p>
+            <button class="read-more-btn" onclick="abrirArtigo('${item.id}')">Ler matéria completa →</button>
+          </div>
+        `;
+        feed.appendChild(card);
+      });
+    }
+
+    function abrirArtigo(id) {
+      const item = noticias.find(n => n.id === id);
+      if (!item) return;
+
+      window.location.hash = id;
+      document.getElementById("view-feed").style.display = "none";
+      const singleView = document.getElementById("view-single");
+      singleView.style.display = "block";
 
       const pTags = item.paragrafos.map(p => `<p>${p}</p>`).join("");
 
-      card.innerHTML = `
+      document.getElementById("single-article").innerHTML = `
         <figure class="news-figure">
           <img class="news-image" src="${item.imagemUrl}" alt="${item.tituloPrincipal}">
           <figcaption class="image-caption">
@@ -119,12 +167,37 @@
           <div class="tripla-title">${item.triplaSemantica}</div>
           <div class="news-body">${pTags}</div>
           <div class="short-box">
-            <h4>📌 Resumo Rápido para Compartilhar: <strong>${item.versaoCurta.titulo}</strong></h4>
+            <h4>📌 Versão Rápida para Compartilhamento: <strong>${item.versaoCurta.titulo}</strong></h4>
             <p>"${item.versaoCurta.texto}"</p>
           </div>
         </div>
       `;
-      feed.appendChild(card);
+      window.scrollTo(0, 0);
+    }
+
+    function irParaHome() {
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      document.getElementById("view-single").style.display = "none";
+      document.getElementById("view-feed").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+
+    // Identifica se alguém já acessou o link direto com #id
+    window.addEventListener("DOMContentLoaded", () => {
+      renderFeed();
+      const currentHash = window.location.hash.replace("#", "");
+      if (currentHash) {
+        abrirArtigo(currentHash);
+      }
+    });
+
+    window.addEventListener("hashchange", () => {
+      const currentHash = window.location.hash.replace("#", "");
+      if (currentHash) {
+        abrirArtigo(currentHash);
+      } else {
+        irParaHome();
+      }
     });
   </script>
 </body>
