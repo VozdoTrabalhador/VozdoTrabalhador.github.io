@@ -6,7 +6,7 @@
   <title>Voz do Trabalhador | Portal de Notícias e Economia</title>
   <style>
     :root {
-      --primary: #c4170c; /* Tom vermelho estilo G1 */
+      --primary: #c4170c;
       --primary-dark: #8b0e07;
       --bg: #f4f5f7;
       --card-bg: #ffffff;
@@ -18,41 +18,43 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.5; }
 
-    /* Topbar & Header */
+    /* Topbar */
     .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); }
     .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
     .tagline { font-size: 0.82rem; font-weight: 500; opacity: 0.9; }
 
-    /* Layout */
+    /* Container Principal */
     .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
     .section-header { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; margin-bottom: 1.25rem; }
 
-    /* Cards de Notícia */
-    .news-feed { display: flex; flex-direction: column; gap: 1.5rem; }
+    /* Card de Notícia */
+    .news-feed { display: flex; flex-direction: column; gap: 1.75rem; }
     .news-card { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04); overflow: hidden; }
-    .news-content { padding: 1.5rem; }
+    
+    /* Imagem e Legenda */
+    .news-figure { width: 100%; margin: 0; background: #e2e8f0; }
+    .news-image { width: 100%; max-height: 420px; object-fit: cover; display: block; }
+    .image-caption { font-size: 0.78rem; color: var(--text-muted); padding: 0.4rem 1.5rem; background: #f8fafc; border-bottom: 1px solid var(--border); }
+    .image-caption strong { color: #475569; }
 
+    .news-content { padding: 1.5rem; }
     .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary); letter-spacing: 0.5px; margin-bottom: 0.5rem; display: inline-block; }
     .meta-time { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
 
-    /* Título Noticioso */
-    .news-card h2 { font-size: 1.45rem; line-height: 1.25; font-weight: 800; color: #0b1320; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
-    .news-card h2:hover { color: var(--primary); cursor: pointer; }
-
-    /* Subtítulo / Linha Fina (Tripla Semântica) */
-    .tripla-title { font-size: 0.95rem; font-weight: 700; color: #374151; background: #fff5f5; border-left: 3px solid var(--primary); padding: 0.5rem 0.75rem; margin-bottom: 1rem; line-height: 1.4; }
+    /* Títulos */
+    .news-card h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 800; color: #0b1320; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
+    .tripla-title { font-size: 0.95rem; font-weight: 700; color: #374151; background: #fff5f5; border-left: 3px solid var(--primary); padding: 0.5rem 0.75rem; margin-bottom: 1.25rem; line-height: 1.4; }
 
     /* Texto */
     .news-body p { font-size: 1.02rem; color: #374151; line-height: 1.65; margin-bottom: 0.9rem; }
     .news-body p:last-child { margin-bottom: 0; }
 
-    /* Caixa Versão Curta / Compartilhamento */
+    /* Resumo Curto */
     .short-box { background: #f9fafb; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 1rem; margin-top: 1.25rem; }
-    .short-box h4 { font-size: 0.82rem; text-transform: uppercase; color: #475569; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
+    .short-box h4 { font-size: 0.82rem; text-transform: uppercase; color: #475569; margin-bottom: 0.4rem; }
     .short-box p { font-size: 0.92rem; color: #4b5563; line-height: 1.5; font-style: italic; }
 
-    /* Footer */
     footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 3rem; }
   </style>
 </head>
@@ -66,7 +68,7 @@
   </header>
 
   <main class="container">
-    <h3 class="section-header">Últimas Atualizações</h3>
+    <h3 class="section-header">Últimas Notícias</h3>
     <div id="feed" class="news-feed"></div>
   </main>
 
@@ -74,12 +76,14 @@
     &copy; 2026 Voz do Trabalhador — Análises e apurações sobre mercado, renda e direitos.
   </footer>
 
-  <!-- SCRIPT QUE ORGANIZA AUTOMATICAMENTE (A MAIS NOVA APARECE PRIMEIRO) -->
   <script>
     const noticias = [
       {
         categoria: "TRABALHO & POLÍTICA",
         data: "06/10/2026 às 19h55",
+        imagemUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+        imagemLegenda: "Debate sobre alterações na jornada de trabalho e impactos no setor produtivo.",
+        imagemFonte: "Unsplash / Domínio Público",
         tituloPrincipal: "Escala 6x1 vira cabo de guerra: Lula pressiona por 40 horas e oposição alerta para risco de cortes",
         triplaSemantica: "ILUSÃO POPULISTA, COMÉRCIO SUFOCADO, TRABALHADOR PREJUDICADO: O QUE NÃO CONTAM SOBRE A JORNADA REDUZIDA",
         paragrafos: [
@@ -92,11 +96,8 @@
           texto: "Todo mundo quer trabalhar menos e descansar mais, mas a pergunta real é: de onde sai o dinheiro? Se o custo do trabalho sobe na canetada sem aumento de produção, o pequeno empresário faz uma de três coisas: aumenta os preços na prateleira, demite ou vai para a informalidade. Prometer benefício sem base econômica gera inflação e desemprego, exatamente o que o trabalhador menos precisa. O caminho seguro para melhorar a renda e o emprego é cortar privilégios estatais, reduzir impostos e atrair investimentos para o país crescer de verdade."
         }
       }
-      /* PARA ADICIONAR A PRÓXIMA NOTÍCIA, BASTA COPIAR O BLOCO ACIMA, 
-         COLOCAR UMA VÍRGULA LOGO APÓS A CHAVE FECHADA } E COLAR ABAIXO */
     ];
 
-    // Renderização automática no feed (a mais recente sempre em cima)
     const feed = document.getElementById("feed");
     noticias.slice().reverse().forEach(item => {
       const card = document.createElement("article");
@@ -105,6 +106,12 @@
       const pTags = item.paragrafos.map(p => `<p>${p}</p>`).join("");
 
       card.innerHTML = `
+        <figure class="news-figure">
+          <img class="news-image" src="${item.imagemUrl}" alt="${item.tituloPrincipal}">
+          <figcaption class="image-caption">
+            ${item.imagemLegenda} <strong>(Foto: ${item.imagemFonte})</strong>
+          </figcaption>
+        </figure>
         <div class="news-content">
           <span class="category-tag">${item.categoria}</span>
           <div class="meta-time">${item.data}</div>
