@@ -13,24 +13,27 @@
       --text-main: #111827;
       --text-muted: #6b7280;
       --border: #e5e7eb;
+      --whatsapp: #25d366;
+      --telegram: #229ed9;
+      --twitter: #000000;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.5; }
 
     /* Topbar */
-    .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; }
+    .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; cursor: pointer; }
     .tagline { font-size: 0.82rem; font-weight: 500; opacity: 0.9; }
 
-    /* Layout */
+    /* Container Principal */
     .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; min-height: 75vh; }
-    .section-header { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; margin-bottom: 1.25rem; }
+    .section-header { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 0.4rem; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
 
     /* Cards */
     .news-feed { display: flex; flex-direction: column; gap: 1.75rem; }
-    .news-card { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04); overflow: hidden; }
+    .news-card { background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); overflow: hidden; }
     
     /* Imagem Externa e Legenda */
     .news-figure { width: 100%; margin: 0; background: #e2e8f0; }
@@ -39,28 +42,50 @@
     .image-caption strong { color: #475569; }
 
     .news-content { padding: 1.5rem; }
-    .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary); letter-spacing: 0.5px; margin-bottom: 0.5rem; display: inline-block; }
-    .meta-time { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; }
+    .category-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary); letter-spacing: 0.5px; }
+    .meta-time { font-size: 0.8rem; color: var(--text-muted); }
 
     /* Títulos */
-    .news-card h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 800; color: #0b1320; margin-bottom: 0.75rem; letter-spacing: -0.3px; cursor: pointer; }
+    .news-card h2 { font-size: 1.55rem; line-height: 1.25; font-weight: 800; color: #0b1320; margin-bottom: 0.75rem; letter-spacing: -0.3px; cursor: pointer; }
     .news-card h2:hover { color: var(--primary); }
-    .tripla-title { font-size: 0.95rem; font-weight: 700; color: #374151; background: #fff5f5; border-left: 3px solid var(--primary); padding: 0.5rem 0.75rem; margin-bottom: 1.25rem; line-height: 1.4; }
+    .tripla-title { font-size: 0.95rem; font-weight: 700; color: #374151; background: #fff5f5; border-left: 3px solid var(--primary); padding: 0.6rem 0.85rem; margin-bottom: 1.25rem; line-height: 1.4; border-radius: 0 4px 4px 0; }
 
     /* Textos */
-    .news-body p { font-size: 1.05rem; color: #374151; line-height: 1.7; margin-bottom: 1rem; }
+    .news-body p { font-size: 1.05rem; color: #374151; line-height: 1.7; margin-bottom: 1.1rem; }
     .news-preview { font-size: 1.02rem; color: #4b5563; line-height: 1.6; margin-bottom: 1.25rem; }
 
-    /* Botões */
-    .read-more-btn { display: inline-block; background-color: var(--primary); color: white; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; }
+    /* Central de Compartilhamento */
+    .share-section { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    .share-title { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+    .share-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .btn-share { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.9rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.1s; color: white; }
+    .btn-share:hover { opacity: 0.9; }
+    .btn-share:active { transform: scale(0.97); }
+
+    .btn-whatsapp { background-color: var(--whatsapp); color: #fff; }
+    .btn-telegram { background-color: var(--telegram); color: #fff; }
+    .btn-x { background-color: var(--twitter); color: #fff; }
+    .btn-copy { background-color: #475569; color: #fff; }
+    .btn-native { background-color: #6366f1; color: #fff; }
+
+    /* Caixa Resumo WhatsApp */
+    .short-box { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 1.25rem; margin-top: 1.75rem; }
+    .short-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem; }
+    .short-box h4 { font-size: 0.85rem; text-transform: uppercase; color: #334155; }
+    .btn-copy-box { background-color: #0f172a; color: white; border: none; border-radius: 4px; padding: 0.4rem 0.75rem; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .btn-copy-box:hover { background-color: #334155; }
+    .short-box p { font-size: 0.95rem; color: #334155; line-height: 1.55; font-style: italic; }
+
+    /* Botões de Navegação */
+    .read-more-btn { display: inline-block; background-color: var(--primary); color: white; padding: 0.65rem 1.25rem; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; transition: background 0.2s; }
     .read-more-btn:hover { background-color: var(--primary-dark); }
     .back-btn { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--primary); font-weight: 700; text-decoration: none; margin-bottom: 1.25rem; cursor: pointer; font-size: 0.95rem; }
     .back-btn:hover { text-decoration: underline; }
 
-    /* Caixa Resumo WhatsApp */
-    .short-box { background: #f9fafb; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 1.25rem; margin-top: 1.75rem; }
-    .short-box h4 { font-size: 0.85rem; text-transform: uppercase; color: #475569; margin-bottom: 0.5rem; }
-    .short-box p { font-size: 0.95rem; color: #334155; line-height: 1.55; font-style: italic; }
+    /* Alerta de Copiado (Toast) */
+    #toast { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: #fff; padding: 0.75rem 1.25rem; border-radius: 6px; font-size: 0.88rem; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.25); display: none; z-index: 9999; animation: fadeIn 0.2s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 3rem; }
   </style>
@@ -76,7 +101,10 @@
 
   <main class="container">
     <div id="view-feed">
-      <h3 class="section-header">Últimas Notícias</h3>
+      <div class="section-header">
+        <span>Últimas Atualizações</span>
+        <span style="font-size: 0.75rem; font-weight: 600; color: #dc2626;">🔥 Conteúdo em debate</span>
+      </div>
       <div id="feed" class="news-feed"></div>
     </div>
 
@@ -86,18 +114,20 @@
     </div>
   </main>
 
+  <div id="toast">Copiado com sucesso!</div>
+
   <footer>
     &copy; 2026 Voz do Trabalhador — Análises e apurações sobre mercado, renda e direitos.
   </footer>
 
   <script>
-    /* BANCO DE NOTÍCIAS AUTOMÁTICO */
+    /* BANCO DE NOTÍCIAS */
     const noticias = [
       {
         id: "escala-6x1-lula-flavio",
         categoria: "TRABALHO & POLÍTICA",
         data: "06/10/2026 às 19h55",
-        imagemUrl: "", // Deixe vazio se não tiver imagem, o site se ajusta sozinho
+        imagemUrl: "", // Adicione link de imagem aqui ou deixe vazio
         imagemLegenda: "Proposta de alteração de jornada gera debate sobre impacto nas contas e no emprego.",
         imagemFonte: "Reprodução / Redes Sociais",
         tituloPrincipal: "Escala 6x1 vira cabo de guerra: Lula defende 40 horas e oposição alerta para risco de cortes e inflação",
@@ -114,6 +144,67 @@
         }
       }
     ];
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.style.display = "block";
+      setTimeout(() => { toast.style.display = "none"; }, 3000);
+    }
+
+    function copiarTexto(texto, mensagemSucesso) {
+      navigator.clipboard.writeText(texto).then(() => {
+        showToast(mensagemSucesso || "Copiado com sucesso!");
+      }).catch(() => {
+        // Fallback para navegadores antigos
+        const area = document.createElement("textarea");
+        area.value = texto;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        document.body.removeChild(area);
+        showToast(mensagemSucesso || "Copiado com sucesso!");
+      });
+    }
+
+    function getArtigoUrl(id) {
+      return `${window.location.origin}${window.location.pathname}#${id}`;
+    }
+
+    function compartilharWhatsApp(id, titulo) {
+      const url = getArtigoUrl(id);
+      const msg = `🚨 *${titulo}*\n\nLeia a análise completa e veja os impactos reais no link:\n${url}`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function compartilharTelegram(id, titulo) {
+      const url = getArtigoUrl(id);
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(titulo)}`, '_blank');
+    }
+
+    function compartilharTwitter(id, titulo) {
+      const url = getArtigoUrl(id);
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(titulo)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function compartilharNativo(id, titulo, texto) {
+      const url = getArtigoUrl(id);
+      if (navigator.share) {
+        navigator.share({
+          title: titulo,
+          text: texto,
+          url: url
+        }).catch(() => {});
+      } else {
+        copiarTexto(url, "Link copiado para compartilhar!");
+      }
+    }
+
+    function copiarMensagemPronta(id, versaoCurta) {
+      const url = getArtigoUrl(id);
+      const textoCompleto = `*${versaoCurta.titulo}*\n\n"${versaoCurta.texto}"\n\n🔗 *Leia mais em:* ${url}`;
+      copiarTexto(textoCompleto, "Mensagem copiada! Cole no WhatsApp.");
+    }
 
     function gerarBlocoImagem(item) {
       if (!item.imagemUrl || item.imagemUrl.trim() === "") return "";
@@ -137,12 +228,19 @@
         card.innerHTML = `
           ${gerarBlocoImagem(item)}
           <div class="news-content">
-            <span class="category-tag">${item.categoria}</span>
-            <div class="meta-time">${item.data}</div>
+            <div class="meta-row">
+              <span class="category-tag">${item.categoria}</span>
+              <span class="meta-time">${item.data}</span>
+            </div>
             <h2 onclick="abrirArtigo('${item.id}')">${item.tituloPrincipal}</h2>
             <div class="tripla-title">${item.triplaSemantica}</div>
             <p class="news-preview">${item.resumoHome}</p>
-            <button class="read-more-btn" onclick="abrirArtigo('${item.id}')">Ler matéria completa →</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+              <button class="read-more-btn" onclick="abrirArtigo('${item.id}')">Ler matéria completa →</button>
+              <button class="btn-share btn-whatsapp" onclick="compartilharWhatsApp('${item.id}', '${item.tituloPrincipal}')">
+                Compartilhar no WhatsApp
+              </button>
+            </div>
           </div>
         `;
         feed.appendChild(card);
@@ -163,14 +261,45 @@
       document.getElementById("single-article").innerHTML = `
         ${gerarBlocoImagem(item)}
         <div class="news-content">
-          <span class="category-tag">${item.categoria}</span>
-          <div class="meta-time">${item.data}</div>
+          <div class="meta-row">
+            <span class="category-tag">${item.categoria}</span>
+            <span class="meta-time">${item.data}</span>
+          </div>
           <h2>${item.tituloPrincipal}</h2>
           <div class="tripla-title">${item.triplaSemantica}</div>
           <div class="news-body">${pTags}</div>
+
+          <!-- Caixa Resumo Especial para WhatsApp -->
           <div class="short-box">
-            <h4>📌 Versão Rápida para Compartilhamento: <strong>${item.versaoCurta.titulo}</strong></h4>
+            <div class="short-box-header">
+              <h4>📌 Resumo Rápido para Redes Sociais: <strong>${item.versaoCurta.titulo}</strong></h4>
+              <button class="btn-copy-box" onclick='copiarMensagemPronta("${item.id}", ${JSON.stringify(item.versaoCurta)})'>
+                📋 Copiar texto pronto
+              </button>
+            </div>
             <p>"${item.versaoCurta.texto}"</p>
+          </div>
+
+          <!-- Central de Compartilhamento Viral -->
+          <div class="share-section">
+            <div class="share-title">📢 Espalhe esta informação nas redes:</div>
+            <div class="share-buttons">
+              <button class="btn-share btn-whatsapp" onclick="compartilharWhatsApp('${item.id}', '${item.tituloPrincipal}')">
+                🟢 WhatsApp
+              </button>
+              <button class="btn-share btn-telegram" onclick="compartilharTelegram('${item.id}', '${item.tituloPrincipal}')">
+                ✈️ Telegram
+              </button>
+              <button class="btn-share btn-x" onclick="compartilharTwitter('${item.id}', '${item.tituloPrincipal}')">
+                𝕏 Postar
+              </button>
+              <button class="btn-share btn-copy" onclick="copiarTexto(getArtigoUrl('${item.id}'), 'Link da matéria copiado!')">
+                🔗 Copiar Link
+              </button>
+              <button class="btn-share btn-native" onclick="compartilharNativo('${item.id}', '${item.tituloPrincipal}', '${item.resumoHome}')">
+                📲 Mais Opções
+              </button>
+            </div>
           </div>
         </div>
       `;
