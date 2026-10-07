@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- TAGS DE REDES SOCIAIS (FACEBOOK, WHATSAPP, 𝕏) -->
+  <!-- TAGS DE REDES SOCIAIS (FACEBOOK, WHATSAPP, 𝕏, LINKEDIN) -->
   <title>{{ page.title }} | Voz do Trabalhador</title>
   <meta name="description" content="{{ page.tripla }}">
   
@@ -65,14 +65,22 @@
 
     .news-body p { font-size: 1.05rem; color: #374151; line-height: 1.7; margin-bottom: 1.1rem; }
 
-    /* Reações Rápidas */
+    /* BOX DO AUTOR (MARCOS VERIDIANO) */
+    .author-box { display: flex; gap: 1.25rem; background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-top: 2rem; align-items: center; }
+    .author-avatar { width: 78px; height: 78px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); flex-shrink: 0; }
+    .author-info h4 { font-size: 1.02rem; font-weight: 800; color: #0f172a; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.35rem; }
+    .author-info .badge-verified { background: #fee2e2; color: #991b1b; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase; }
+    .author-role { font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-bottom: 0.4rem; }
+    .author-bio { font-size: 0.85rem; color: #475569; line-height: 1.45; }
+
+    /* REAÇÕES RÁPIDAS */
     .reaction-bar { display: flex; gap: 0.6rem; margin-top: 1.75rem; padding: 0.85rem; background: #f8fafc; border-radius: 6px; border: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
     .reaction-title { font-size: 0.82rem; font-weight: 700; color: #475569; text-transform: uppercase; margin-right: 0.5rem; }
     .btn-reaction { background: #fff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 0.35rem 0.75rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; transition: 0.2s; }
     .btn-reaction:hover { background: #f1f5f9; }
     .btn-reaction.active { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
 
-    /* Caixa Resumo WhatsApp */
+    /* RESUMO RÁPIDO */
     .short-box { background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 6px; padding: 1.25rem; margin-top: 1.75rem; }
     .short-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem; }
     .short-box h4 { font-size: 0.85rem; text-transform: uppercase; color: #334155; }
@@ -80,7 +88,7 @@
     .btn-copy-box:hover { background-color: #334155; }
     .short-box p { font-size: 0.95rem; color: #334155; line-height: 1.55; font-style: italic; }
 
-    /* Central de Compartilhamento */
+    /* COMPARTILHAMENTO */
     .share-section { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
     .share-title { font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
     .share-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -95,7 +103,6 @@
     .btn-native { background-color: #6366f1; }
 
     #toast { position: fixed; bottom: 20px; right: 20px; background: #0f172a; color: #fff; padding: 0.75rem 1.25rem; border-radius: 6px; font-size: 0.88rem; font-weight: 600; display: none; z-index: 9999; }
-    footer { text-align: center; padding: 2.5rem 1rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 3rem; }
   </style>
 </head>
 <body>
@@ -133,6 +140,16 @@
 
         <div class="news-body">
           {{ content }}
+        </div>
+
+        <!-- BOX DO AUTOR (MARCOS VERIDIANO) -->
+        <div class="author-box">
+          <img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80" alt="Marcos Veridiano">
+          <div class="author-info">
+            <h4>Marcos Veridiano <span class="badge-verified">Opinião Independente</span></h4>
+            <div class="author-role">Especialista em Gestão & Comunicador Independente</div>
+            <p class="author-bio">Pós-graduado em Gestão Empresarial com atuação no setor privado. Comunicador e analista independente dedicado a examinar contas públicas, tributos e o impacto real das medidas econômicas na rotina e no bolso do trabalhador.</p>
+          </div>
         </div>
 
         <!-- REAÇÕES INTERATIVAS -->
@@ -178,9 +195,7 @@
 
   <div id="toast">Copiado com sucesso!</div>
 
-  <footer>
-    &copy; 2026 Voz do Trabalhador — Análises e apurações sobre mercado, renda e direitos.
-  </footer>
+  {% include footer.html %}
 
   <script>
     function showToast(msg) {
@@ -253,7 +268,6 @@
       document.getElementById(`btn_${tipo}`).classList.add("active");
     }
 
-    // Carrega votos salvos
     ['fogo', 'aplauso', 'alerta'].forEach(tipo => {
       const salvo = localStorage.getItem(`reacao_{{ page.url }}_${tipo}`);
       if (salvo) document.getElementById(`count_${tipo}`).innerText = salvo;
@@ -262,7 +276,6 @@
       }
     });
 
-    /* PROGRESS BAR */
     window.addEventListener("scroll", () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
