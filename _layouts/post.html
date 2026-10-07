@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- TAGS DE REDES SOCIAIS (FACEBOOK, WHATSAPP, 𝕏, LINKEDIN) -->
+  <!-- Ícone da Aba de Navegação (Favicon) -->
+  <link rel="icon" type="image/jpeg" href="/logotipo-voz-do-trabalhador-news.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="/logotipo-voz-do-trabalhador-news.jpg">
+
   <title>{{ page.title }} | Voz do Trabalhador</title>
   <meta name="description" content="{{ page.tripla }}">
   
@@ -12,12 +15,12 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:title" content="{{ page.title }}">
   <meta property="og:description" content="{{ page.tripla }}">
-  <meta property="og:image" content="{{ page.imagem }}">
+  <meta property="og:image" content="{{ page.imagem | default: '/logotipo-voz-do-trabalhador-news.jpg' }}">
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ page.title }}">
   <meta name="twitter:description" content="{{ page.tripla }}">
-  <meta name="twitter:image" content="{{ page.imagem }}">
+  <meta name="twitter:image" content="{{ page.imagem | default: '/logotipo-voz-do-trabalhador-news.jpg' }}">
 
   <style>
     :root {
@@ -40,9 +43,11 @@
 
     #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ff2d20; width: 0%; z-index: 200; transition: width 0.1s; }
 
-    .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .topbar { background-color: var(--primary); color: #fff; padding: 0.65rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
+    
+    .logo { display: inline-flex; align-items: center; gap: 0.65rem; font-size: 1.35rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .logo-img { height: 38px; width: auto; max-width: 48px; object-fit: contain; border-radius: 4px; display: block; }
     .tagline { font-size: 0.82rem; font-weight: 500; opacity: 0.9; }
 
     .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
@@ -111,7 +116,10 @@
 
   <header class="topbar">
     <div class="topbar-container">
-      <a href="/" class="logo">Voz do Trabalhador</a>
+      <a href="/" class="logo">
+        <img class="logo-img" src="/logo-voz-do-trabalhador-news.png" alt="Logo Voz do Trabalhador">
+        <span>Voz do Trabalhador</span>
+      </a>
       <span class="tagline">Trabalho, Economia & Fatos</span>
     </div>
   </header>
@@ -144,7 +152,7 @@
 
         <!-- BOX DO AUTOR (MARCOS VERIDIANO) -->
         <div class="author-box">
-          <img class="author-avatar" src="https://github.com/VozdoTrabalhador/VozdoTrabalhador.github.io/blob/main/marcos-veridiano-voz-do-trabalhador-news.webp?raw=true" alt="Marcos Veridiano">
+          <img class="author-avatar" src="/marcos-veridiano-voz-do-trabalhador-news.webp" alt="Marcos Veridiano">
           <div class="author-info">
             <h4>Marcos Veridiano <span class="badge-verified">Opinião Independente</span></h4>
             <div class="author-role">Especialista em Gestão & Comunicador Independente</div>
@@ -166,7 +174,7 @@
           </button>
         </div>
 
-        <!-- CAIXA RESUMO WHATSAPP COM BOTÃO DE COPIAR -->
+        <!-- RESUMO WHATSAPP COM BOTÃO DE COPIAR -->
         <div class="short-box">
           <div class="short-box-header">
             <h4>📌 Resumo Rápido para Redes Sociais: <strong>{{ page.short_titulo }}</strong></h4>
@@ -175,7 +183,7 @@
           <p id="resumoTexto">"{{ page.short_texto }}"</p>
         </div>
 
-        <!-- COMPARTILHAMENTO COMPLETO -->
+        <!-- CENTRAL DE COMPARTILHAMENTO -->
         <div class="share-section">
           <div class="share-title">📢 Compartilhe esta matéria agora:</div>
           <div class="share-buttons">
