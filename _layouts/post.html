@@ -43,13 +43,13 @@
 
     #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ff2d20; width: 0%; z-index: 200; transition: width 0.1s; }
 
-    /* Topbar Ajustada */
-    .topbar { background-color: var(--primary); color: #fff; padding: 0.35rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; min-height: 56px; }
+    /* Topbar com 1px no topo e no fundo */
+    .topbar { background-color: var(--primary); color: #fff; padding: 1px 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     
-    /* Logo Ocupando Altura Máxima */
-    .logo { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
-    .logo-img { height: 52px; width: auto; object-fit: contain; display: block; }
+    /* Logo ocupando a altura máxima do menu */
+    .logo { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 1.4rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; line-height: 1; }
+    .logo-img { height: 58px; width: auto; object-fit: contain; display: block; }
     .tagline { font-size: 0.82rem; font-weight: 500; opacity: 0.9; }
 
     .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
