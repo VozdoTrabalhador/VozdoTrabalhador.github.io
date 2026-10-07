@@ -7,9 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voz do Trabalhador | Portal de Notícias e Economia</title>
   
+  <!-- Ícone da Aba de Navegação (Favicon) -->
+  <link rel="icon" type="image/jpeg" href="/logotipo-voz-do-trabalhador-news.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="/logotipo-voz-do-trabalhador-news.jpg">
+
   <meta property="og:title" content="Voz do Trabalhador | Portal de Notícias e Economia">
   <meta property="og:description" content="Análises e apurações sobre o impacto real das propostas econômicas no bolso do trabalhador.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1200&h=630&q=80">
+  <meta property="og:image" content="/logotipo-voz-do-trabalhador-news.jpg">
 
   <style>
     :root {
@@ -27,9 +31,12 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.5; }
 
-    .topbar { background-color: var(--primary); color: #fff; padding: 0.75rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .topbar { background-color: var(--primary); color: #fff; padding: 0.65rem 1.25rem; border-bottom: 2px solid var(--primary-dark); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .topbar-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
+    
+    /* Logo com imagem e texto juntos */
+    .logo { display: inline-flex; align-items: center; gap: 0.65rem; font-size: 1.35rem; font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .logo-img { height: 38px; width: auto; max-width: 48px; object-fit: contain; border-radius: 4px; display: block; }
     .tagline { font-size: 0.82rem; font-weight: 500; opacity: 0.9; }
 
     .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; min-height: 75vh; }
@@ -66,7 +73,10 @@
 
   <header class="topbar">
     <div class="topbar-container">
-      <a href="/" class="logo">Voz do Trabalhador</a>
+      <a href="/" class="logo">
+        <img class="logo-img" src="/logo-voz-do-trabalhador-news.png" alt="Logo Voz do Trabalhador">
+        <span>Voz do Trabalhador</span>
+      </a>
       <span class="tagline">Trabalho, Economia & Fatos</span>
     </div>
   </header>
@@ -78,7 +88,6 @@
     </div>
 
     <div id="feed" class="news-feed">
-      <!-- LOOP AUTOMÁTICO DO JEKYLL -->
       {% for post in site.posts %}
       <article class="news-card card-item">
         {% if post.imagem and post.imagem != "" %}
@@ -108,7 +117,6 @@
     </div>
   </main>
 
-  <!-- RODAPÉ COMPLETO MODULAR -->
   {% include footer.html %}
 
   <script>
